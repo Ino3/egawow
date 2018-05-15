@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>WebSocketを使おう</title>
+</head>
+<body>
+<!--<h1>Chatアプリ</h1>-->
+<!--<form id='form'>-->
+	<!--<input id="chat" />-->
+	<!--<button>送信</button>-->
+<!--</form>-->
+<!--<ul id="messages"></ul>-->
+<div id="emotion">
+{{{ emotion }}}
+</div>
+
+<div id="box">
+	<canvas style="height: 450px; width: 450px;" id="radarChart" height="300" width="300"></canvas>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<script>
+    const socket = io();
+
+    // サーバ側からchatイベントを待ち受ける
+    socket.on('emotion', function (msg) {
+        let ctx = document.getElementById("radarChart").getContext("2d");
+	    let labels = [];
+	    let data = [];
+
+	    const emotion = msg.emotion;
+
+	    function radarCond(value) {
+            if( value > 0.8 ) {
+                res =  4;
+            } else if( value > 0.3 ) {
+                res = 3;
+            } else if( value > 0.1 ) {
+                res = 2;
+            } else if (value < 0.1) {
+                res = 1;
+            }
+            return res;
+	    }
+
+        for ( let label in emotion) {
+            labels.push(label);
+            data.push(emotion[label]);
+        }
+
+        console.dir(labels);
+        console.dir(data);
+
+        const myRadarChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                "datasets": [ {
+                    "label"                    : "My First Dataset",
+                    "data"                     : data,
+                    "backgroundColor": [
+                        "rgb(255, 99, 132)",
+	                    "rgb(54, 162, 235)",
+	                    "rgb(255, 205, 86)",
+	                    "rgb(54, 162, 235)",
+	                    "rgb(124, 33, 86)",
+	                    "rgb(1, 162, 235)",
+	                    "rgb(150, 205, 86)",
+	                    "rgb(5, 205, 86)",
+                    ]
+                }]
+            },
+            options: {}
+        });
+
+        let panel = document.getElementById('emotion');
+        panel.textContent = JSON.stringify(msg);
+        //
+        // var li = document.createElement('li');
+        // li.textContent = msg;
+        // emotion.appendChild(li);
+    });
+</script>
+<!--<script>-->
+    <!--var socket = io();-->
+    <!--var form = document.getElementById('form');-->
+    <!--var chat = document.getElementById('chat');-->
+    <!--var messages = document.getElementById('messages');-->
+
+    <!--form.addEventListener('submit', function (e) {-->
+        <!--// websocketを使うのでフォームの送信をキャンセル-->
+        <!--e.preventDefault();-->
+
+        <!--// イベントを発火しデータを受け渡す-->
+        <!--socket.emit('chat', chat.value);-->
+        <!--chat.value = '';-->
+    <!--});-->
+
+    <!--// サーバ側からchatイベントを待ち受ける-->
+    <!--socket.on('chat', function (msg) {-->
+        <!--var li = document.createElement('li');-->
+        <!--li.textContent = msg;-->
+        <!--messages.appendChild(li);-->
+    <!--});-->
+<!--</script>-->
+</body>
+</html>
