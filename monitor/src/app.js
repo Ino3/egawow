@@ -3,7 +3,7 @@
 const Hapi          = require( 'hapi' ),
       fs            = require( 'fs' ),
       HAPIWebSocket = require( "hapi-plugin-websocket" ),
-      HAPIAuthBasic = require( "hapi-auth-basic" ),
+//      HAPIAuthBasic = require( "hapi-auth-basic" ),
       WebSocket     = require( "ws" );
 
 
