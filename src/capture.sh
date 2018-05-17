@@ -19,15 +19,31 @@ done
 
 FACE_FOLDER=/home/egawow/app/face
 FILE="face.jpg"
+WIDTH=600
+HEIGHT=600
 echo "raspistill $VF $HF -o $FACE_FOLDER/$FILE $TIME_DELAY -w 600 -h 600 -e jpg -br 55"
-#raspistill $VF $HF -n -q 100 -o /home/egawow/app/face/$FILE $TIME_DELAY -w 1280 -h 720 -e jpg
-raspistill $VF $HF -n -q 100 -o $FACE_FOLDER/$FILE $TIME_DELAY -w 600 -h 600 -e jpg -br 55
+raspistill $VF $HF -n -q 100 -o $FACE_FOLDER/$FILE $TIME_DELAY -w $WIDTH -h $HEIGHT -e jpg -br 55
 
-
-# send to FaceAPI endpoint
+# send to FaceAPI endpoint, and extract emotion value
 emotion=$(./api_client.sh -f "$FACE_FOLDER/$FILE" | jq '.[0].faceAttributes.emotion')
 
+# display emotion value
 echo $emotion | jq .
+
+# check egawow!! or not
+echo "=================================="
+HDegree=$(echo $emotion | jq '.happiness')
+echo "Happiness Degree:" $HDegree
+
+if [ $(echo "$HDegree> 0.5" | bc) -eq 1 ]
+then
+    echo " EGAWOW!! Smile  !!"
+else
+    echo "Please smile more!!"
+fi
+
+echo "=================================="
+
 # send to Monitor module
 #curl -X POST \
 #  http://localhost:3000 \
