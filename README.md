@@ -26,7 +26,7 @@ and setting up following belows
 # Configuration
 Run below code
 ```bash
-curl -sSfL https://raw.githubusercontent.com/sak39/egawow/master/etc/init.sh | sudo bash - 
+bash <(curl -sSfL https://raw.githubusercontent.com/sak39/egawow/master/etc/init.sh)
 ```
 
 

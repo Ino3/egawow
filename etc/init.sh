@@ -7,7 +7,6 @@ function setup_for_apt() {
 	sudo apt install emacs \
 	sudo apt install samba \
 	sudo apt install bc \
-	sudo apt install python \
 	sudo apt install git
 	echo $(tput setaf 2)"Complete apt settings"$(tput sgr0)
 }
