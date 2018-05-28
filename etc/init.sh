@@ -2,12 +2,14 @@
 
 # apt
 function setup_for_apt() {
+	echo $(tput setaf 2)"start apt settings"$(tput sgr0)
 	sudo apt update && sudo apt upgrade \
 	sudo apt install emacs \
 	sudo apt install samba \
 	sudo apt install bc \
 	sudo apt install python \
 	sudo apt install git
+	echo $(tput setaf 2)"Complete apt settings"$(tput sgr0)
 }
 
 function setup_for_samba() {
@@ -20,10 +22,13 @@ function setup_for_samba() {
     EOF
     "
 	sudo systemctl start smbd
+	echo $(tput setaf 2)"Complete samba settings"$(tput sgr0)
 }
 
 function setup_for_ssh() {
 	sudo systemctl start ssh
+	echo $(tput setaf 2)"Complete ssh settings"$(tput sgr0)
+
 }
 
 

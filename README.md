@@ -13,7 +13,7 @@ and setting up following belows
 	> i.e.) egawow000
 
 2. Network > wifi
-	> Japan > cncupsul.u-aiu.ac.jp > uoacnlab
+	> Japan > SSID > PASSWORD
 
 3. Localization > keyboard
 	> Apple(ANSI) > Japaese > No > No
@@ -26,7 +26,7 @@ and setting up following belows
 # Configuration
 Run below code
 ```bash
-$(curl -sSfL https://raw.githubusercontent.com/sak39/egawow/master/etc/init.sh) | sudo bash - 
+curl -sSfL https://raw.githubusercontent.com/sak39/egawow/master/etc/init.sh | sudo bash - 
 ```
 
 
