@@ -1,5 +1,5 @@
 [app]
    comment = App for emotional detection
-   path = /home/pi/app
+   path = /home/egawow/app
    read only = no
    guest ok = yes
