@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SRC_FOLDER=/home/egawow/app/src
+SRC_FOLDER=$HOME/app/src
 
 while true
 do

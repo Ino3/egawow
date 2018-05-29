@@ -17,7 +17,7 @@ do
     esac
 done
 
-FACE_FOLDER=/home/egawow/app/face
+FACE_FOLDER=$HOME/app/face
 FILE="face.jpg"
 WIDTH=600
 HEIGHT=600
@@ -35,10 +35,18 @@ echo "=================================="
 HDegree=$(echo $emotion | jq '.happiness')
 echo "Happiness Degree:" $HDegree
 
+
+EGAO_IMAGE=$HOME/app/asset/smile-egao.png
+GAMAN_IMAGE=$HOME/app/asset/smile-gaman.png
+# kill previous eog smile/neutral image
+ps u | grep eog | grep -v grep && pkill eog
+
 if [ $(echo "$HDegree> 0.5" | bc) -eq 1 ]
 then
+	eog --fullscreen $EGAO_IMAGE &
     echo " EGAWOW!! Smile  !!"
 else
+	eog --fullscreen $GAMAN_IMAGE &
     echo "Please smile more!!"
 fi
 

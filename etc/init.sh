@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
-
 # apt
 function setup_for_apt() {
 	echo $(tput setaf 2)"start apt settings"$(tput sgr0)
+	yes |
 	sudo apt update && sudo apt upgrade \
 	sudo apt install emacs \
 	sudo apt install samba \
 	sudo apt install bc \
-	sudo apt install git
+	sudo apt install git \
+	sudo apt install jq
+
 	echo $(tput setaf 2)"Complete apt settings"$(tput sgr0)
 }
 
@@ -35,8 +37,12 @@ function setup_for_adding_user() {
 	sudo adduser egawow sudo
 }
 
-function setup_for_egawow_user() {
-	mkdir -p /home/egawow/app
+function setup_for_app() {
+	mkdir -p $HOME/app/face
+	mkdir -p $HOME/app/src
+	curl -sfSL https://raw.githubusercontent.com/sak39/egawow/master/src .
+	cd $HOME/app/src
+	chmod +x *
 }
 
 

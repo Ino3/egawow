@@ -17,11 +17,11 @@ do
     esac
 done
 
-echo "raspistill $VF $HF -o /home/egawow/app/face/face_$DATE.jpg $TIME_DELAY -w 600 -h 600 -e jpg -br 55"
+echo "raspistill $VF $HF -o $HOME/app/face/face_$DATE.jpg $TIME_DELAY -w 600 -h 600 -e jpg -br 55"
 #raspistill $VF $HF -n -q 100 -o /home/egawow/app/face/face_$DATE.jpg $TIME_DELAY -w 1280 -h 720 -e jpg
 start_time=$(date +%s)
 FILENAME=face_$DATE.jpg
-raspistill $VF $HF -n -q 100 -o /home/egawow/app/face/$FILENAME $TIME_DELAY -w 600 -h 600 -e jpg -br 55
+raspistill $VF $HF -n -q 100 -o $HOME/app/face/$FILENAME $TIME_DELAY -w 600 -h 600 -e jpg -br 55
 end_time=$(date +%s)
 cat $FILENAME
 echo $(($end_time - $start_time))

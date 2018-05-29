@@ -1,6 +1,6 @@
 #!/bin/bash
 CMDNAME=$(basename $0)
-FACE_API_KEY=5c4377dab3424384bc03d76d38af0e70
+FACE_API_KEY=4593f828c9204fb9a0d1524067a6e5ff
 
 function usage() {
 	echo "Usage: $CMDNAME [-f FILE_PATH]" 1>&2
