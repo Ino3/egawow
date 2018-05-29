@@ -21,6 +21,9 @@ and setting up following belows
 4. Interface > camera
 	> Enable
 	
+5. Interface > SSH
+	> Enable
+	
 	
 	
 # Configuration
